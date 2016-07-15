@@ -61,3 +61,6 @@ Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# I don't want to include the huge starter content
+Content/StarterContent/*
