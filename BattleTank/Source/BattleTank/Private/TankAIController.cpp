@@ -4,9 +4,10 @@
 #include "TankAIController.h"
 
 
+// Called when the game starts or when spawned
 void ATankAIController::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay(); // Call parent class tick function  
 
 	ATank* Tank = GetControlledTank();
 	if (Tank) {
