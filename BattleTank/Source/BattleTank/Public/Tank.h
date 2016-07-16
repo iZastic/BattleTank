@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
@@ -28,6 +29,9 @@ public:
 	float GetMaxTargetRange() const;
 
 	void AimAt( FVector TargetLocation );
+
+protected:
+	UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:
 	// Tank max targeting range in meters
