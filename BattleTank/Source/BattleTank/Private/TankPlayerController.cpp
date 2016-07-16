@@ -41,15 +41,14 @@ ATank* ATankPlayerController::GetControlledTank() const
 
 
 // Gets the hit location where the crosshair is and returns true if within the tanks range
-bool ATankPlayerController::GetCrosshairHit( FVector& out_HitLocation ) const
+FVector ATankPlayerController::GetCrosshairHit() const
 {
 	float MaxRange = GetControlledTank()->GetMaxTargetRange();
 
 	// TODO Line-trace to the crosshair
 	// TODO Set the hit location to object hit within range, or location at max range
 
-	out_HitLocation = FVector(1.f);
-	return true;
+	return FVector(1.f);
 }
 
 
@@ -60,12 +59,10 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 	// Tank has a max range for accurate targeting, but shell can go further.
 
-	FVector HitLocation;
 	// Get the line-trace location
-	if (GetCrosshairHit(HitLocation))
-	{
-		// TODO Make the controlled tank aim towards the hit location
-		UE_LOG(LogTemp, Warning, TEXT("Hitlocation %s"), *HitLocation.ToString());
-	}
+	FVector HitLocation = GetCrosshairHit();
+	
+	// TODO Make the controlled tank aim towards the hit location
+	UE_LOG(LogTemp, Warning, TEXT("Hitlocation %s"), *HitLocation.ToString());
 }
 
