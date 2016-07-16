@@ -45,6 +45,19 @@ FVector ATankPlayerController::GetCrosshairHit() const
 {
 	float MaxRange = GetControlledTank()->GetMaxTargetRange();
 
+	// Get the viewport size
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+
+	// Find the crosshair screen position
+	FVector2D ScreenPosition(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+
+	// De-project the screen position of the crosshair to world direction
+	FVector WorldLocation, WorldDirection;
+	DeprojectScreenPositionToWorld(ScreenPosition.X, ScreenPosition.Y, WorldLocation, WorldDirection);
+	UE_LOG(LogTemp, Warning, TEXT("WorldLocation %s, WorldDirection %s."), *WorldLocation.ToString(), *WorldDirection.ToString());
+	// TODO Line-trace along that look direction
+
 	// TODO Line-trace to the crosshair
 	// TODO Set the hit location to object hit within range, or location at max range
 
@@ -63,6 +76,6 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation = GetCrosshairHit();
 	
 	// TODO Make the controlled tank aim towards the hit location
-	UE_LOG(LogTemp, Warning, TEXT("Hitlocation %s"), *HitLocation.ToString());
+	//UE_LOG(LogTemp, Warning, TEXT("Hitlocation %s"), *HitLocation.ToString());
 }
 

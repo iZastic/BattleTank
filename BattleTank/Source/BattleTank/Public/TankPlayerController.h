@@ -12,7 +12,7 @@ class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
-private:
+public:
 	// Sets default values
 	ATankPlayerController();
 
@@ -22,6 +22,7 @@ private:
 	// Called every frame
 	virtual void Tick( float DeltaTime ) override;
 
+private:
 	ATank* GetControlledTank() const;
 
 	// Gets the hit location where the crosshair is and returns true if within the tanks range
@@ -29,5 +30,13 @@ private:
 
 	// Aims the turret towards where the crosshair is aiming
 	void AimTowardsCrosshair();
+
+	// Horizontal location of the cross hair on the screen (0.0 to 1.0)
+	UPROPERTY(EditAnywhere)
+	float CrosshairXLocation = 0.5;
+
+	// Vertical location of the cross hair on the screen (0.0 to 1.0)
+	UPROPERTY(EditAnywhere)
+	float CrosshairYLocation = 0.3;
 };
 
