@@ -61,17 +61,22 @@ FVector ATankPlayerController::GetLookDirection() const
 // Gets the hit location where the crosshair is and returns true if within the tanks range
 FVector ATankPlayerController::GetCrosshairHit() const
 {
-	float MaxRange = GetControlledTank()->GetMaxTargetRange();
+	float MaxRange = GetControlledTank()->GetMaxTargetRange() * 100.f;
 
 	FVector LookDirection(GetLookDirection());
-	UE_LOG(LogTemp, Warning, TEXT("Look direction %s"), *LookDirection.ToString());
 
-	// TODO Line-trace along that look direction
-
-	// TODO Line-trace to the crosshair
-	// TODO Set the hit location to object hit within range, or location at max range
-
-	return FVector(1.f);
+	// Line-trace along that look direction
+	FHitResult HitResult;
+	if (GetWorld()->LineTraceSingleByChannel(HitResult, 
+		PlayerCameraManager->GetCameraLocation(), 
+		LookDirection * MaxRange, 
+		ECollisionChannel::ECC_Visibility))
+	{
+		// Return the hit location
+		return HitResult.Location;
+	}
+	// No hit, return MaxRange location
+	return FVector(PlayerCameraManager->GetCameraLocation() + LookDirection * MaxRange);
 }
 
 

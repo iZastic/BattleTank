@@ -28,6 +28,6 @@ public:
 private:
 	// Tank max targeting range in meters
 	UPROPERTY(EditAnywhere)
-	float MaxTargetRange = 1000.f;
+	float MaxTargetRange = 500.f;
 };
 
