@@ -22,5 +22,12 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+
+	float GetMaxTargetRange() const;
+
+private:
+	// Tank max targeting range in meters
+	UPROPERTY(EditAnywhere)
+	float MaxTargetRange = 1000.f;
 };
 

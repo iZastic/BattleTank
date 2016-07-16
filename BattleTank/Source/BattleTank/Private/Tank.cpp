@@ -12,12 +12,14 @@ ATank::ATank()
 
 }
 
+
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
+
 
 // Called every frame
 void ATank::Tick( float DeltaTime )
@@ -26,10 +28,17 @@ void ATank::Tick( float DeltaTime )
 
 }
 
+
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
+}
+
+
+float ATank::GetMaxTargetRange() const
+{
+	return MaxTargetRange;
 }
 

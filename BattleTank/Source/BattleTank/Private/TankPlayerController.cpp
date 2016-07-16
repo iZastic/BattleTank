@@ -30,8 +30,7 @@ void ATankPlayerController::BeginPlay()
 void ATankPlayerController::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime ); // Call parent class tick function
-	// Aim towards crosshair
-	UE_LOG(LogTemp, Warning, TEXT("I NEED TO DO SOMETHING"));
+	AimTowardsCrosshair();
 }
 
 
@@ -41,15 +40,32 @@ ATank* ATankPlayerController::GetControlledTank() const
 }
 
 
+// Gets the hit location where the crosshair is and returns true if within the tanks range
+bool ATankPlayerController::GetCrosshairHit( FVector& out_HitLocation ) const
+{
+	float MaxRange = GetControlledTank()->GetMaxTargetRange();
+
+	// TODO Line-trace to the crosshair
+	// TODO Set the hit location to object hit within range, or location at max range
+
+	out_HitLocation = FVector(1.f);
+	return true;
+}
+
+
+// Aims the turret towards where the crosshair is aiming
 void ATankPlayerController::AimTowardsCrosshair()
 {
 	if (!GetControlledTank()) return;
 
-	/* Course comments
-		Get the world location where the crosshair is pointed
-		If it hits the landscape
-			Tell the controlled tank to aim at this point
-	*/
-	// The turret should always move toward the crosshair if capable
+	// Tank has a max range for accurate targeting, but shell can go further.
+
+	FVector HitLocation;
+	// Get the line-trace location
+	if (GetCrosshairHit(HitLocation))
+	{
+		// TODO Make the controlled tank aim towards the hit location
+		UE_LOG(LogTemp, Warning, TEXT("Hitlocation %s"), *HitLocation.ToString());
+	}
 }
 

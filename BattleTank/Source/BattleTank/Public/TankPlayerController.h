@@ -23,6 +23,11 @@ private:
 	virtual void Tick( float DeltaTime ) override;
 
 	ATank* GetControlledTank() const;
+
+	// Gets the hit location where the crosshair is and returns true if within the tanks range
+	bool GetCrosshairHit( FVector& out_HitLocation ) const;
+
+	// Aims the turret towards where the crosshair is aiming
 	void AimTowardsCrosshair();
 };
 
