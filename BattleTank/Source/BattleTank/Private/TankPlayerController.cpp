@@ -40,11 +40,9 @@ ATank* ATankPlayerController::GetControlledTank() const
 }
 
 
-// Gets the hit location where the crosshair is and returns true if within the tanks range
-FVector ATankPlayerController::GetCrosshairHit() const
+// Find the look direction from the crosshair location
+FVector ATankPlayerController::GetLookDirection() const
 {
-	float MaxRange = GetControlledTank()->GetMaxTargetRange();
-
 	// Get the viewport size
 	int32 ViewportSizeX, ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
@@ -55,7 +53,19 @@ FVector ATankPlayerController::GetCrosshairHit() const
 	// De-project the screen position of the crosshair to world direction
 	FVector WorldLocation, WorldDirection;
 	DeprojectScreenPositionToWorld(ScreenPosition.X, ScreenPosition.Y, WorldLocation, WorldDirection);
-	UE_LOG(LogTemp, Warning, TEXT("WorldLocation %s, WorldDirection %s."), *WorldLocation.ToString(), *WorldDirection.ToString());
+
+	return WorldDirection;
+}
+
+
+// Gets the hit location where the crosshair is and returns true if within the tanks range
+FVector ATankPlayerController::GetCrosshairHit() const
+{
+	float MaxRange = GetControlledTank()->GetMaxTargetRange();
+
+	FVector LookDirection(GetLookDirection());
+	UE_LOG(LogTemp, Warning, TEXT("Look direction %s"), *LookDirection.ToString());
+
 	// TODO Line-trace along that look direction
 
 	// TODO Line-trace to the crosshair
