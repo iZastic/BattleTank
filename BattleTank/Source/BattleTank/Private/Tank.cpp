@@ -42,3 +42,10 @@ float ATank::GetMaxTargetRange() const
 	return MaxTargetRange;
 }
 
+
+void ATank::AimAt(FVector TargetLocation)
+{
+	// TODO Implement aim at function for the tank
+	UE_LOG(LogTemp, Warning, TEXT("%s is aiming at %s"), *GetName(), *TargetLocation.ToString());
+}
+

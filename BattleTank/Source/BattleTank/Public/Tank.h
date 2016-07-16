@@ -5,6 +5,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+
 UCLASS()
 class BATTLETANK_API ATank : public APawn
 {
@@ -23,7 +24,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
+	// Returns the max targeting range of the tank
 	float GetMaxTargetRange() const;
+
+	void AimAt( FVector TargetLocation );
 
 private:
 	// Tank max targeting range in meters

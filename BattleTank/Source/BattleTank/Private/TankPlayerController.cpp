@@ -85,12 +85,10 @@ void ATankPlayerController::AimTowardsCrosshair()
 {
 	if (!GetControlledTank()) return;
 
-	// Tank has a max range for accurate targeting, but shell can go further.
-
-	// Get the line-trace location
+	// Get the line-traced aiming hit location
 	FVector HitLocation = GetCrosshairHit();
 	
-	// TODO Make the controlled tank aim towards the hit location
-	//UE_LOG(LogTemp, Warning, TEXT("Hitlocation %s"), *HitLocation.ToString());
+	// Make the controlled tank aim towards the hit location
+	GetControlledTank()->AimAt(HitLocation);
 }
 

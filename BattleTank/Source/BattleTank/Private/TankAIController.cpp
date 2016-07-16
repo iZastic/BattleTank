@@ -27,6 +27,21 @@ void ATankAIController::BeginPlay()
 }
 
 
+// Called every frame
+void ATankAIController::Tick( float DeltaTime )
+{
+	Super::Tick(DeltaTime); // Call parent class tick function
+
+	if (GetPlayerTank())
+	{
+		// TODO If player is out of range, move towards the player
+		// TODO If player is within range and AI is ready to fire, FIRE!
+
+		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	}
+}
+
+
 ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
