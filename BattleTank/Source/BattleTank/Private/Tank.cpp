@@ -44,7 +44,7 @@ float ATank::GetMaxTargetRange() const
 
 void ATank::AimAt(FVector TargetLocation)
 {
-	TankAimingComponent->AimAt(TargetLocation);
+	TankAimingComponent->AimAt(TargetLocation, 4000.f);
 }
 
 

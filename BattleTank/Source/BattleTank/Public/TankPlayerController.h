@@ -30,14 +30,14 @@ private:
 	// Vertical location of the cross hair on the screen (0.0 to 1.0)
 	UPROPERTY(EditAnywhere)
 	float CrosshairYLocation = 0.3;
-
+	
 	ATank* GetControlledTank() const;
 
 	// Find the look direction from the crosshair location
 	FVector GetLookDirection() const;
 
 	// Gets the hit location where the crosshair is and returns true if within the tanks range
-	FVector GetCrosshairHit() const;
+	FVector GetCrosshairHitLocation() const;
 
 	// Aims the turret towards where the crosshair is aiming
 	void AimTowardsCrosshair();

@@ -36,8 +36,8 @@ void ATankAIController::Tick( float DeltaTime )
 	{
 		// TODO If player is out of range, move towards the player
 		// TODO If player is within range and AI is ready to fire, FIRE!
-
-		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+		FVector AimLocation(GetPlayerTank()->GetRootComponent()->GetSocketLocation(FName("Turret")));
+		GetControlledTank()->AimAt(AimLocation);
 	}
 }
 
