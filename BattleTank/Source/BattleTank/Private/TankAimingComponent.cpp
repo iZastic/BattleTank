@@ -33,13 +33,13 @@ void UTankAimingComponent::AimAt( FVector TargetLocation, float LaunchSpeed )
 }
 
 
-void UTankAimingComponent::SetTurretReference(UStaticMeshComponent* TurretToSet)
+void UTankAimingComponent::SetTurretReference( UStaticMeshComponent* TurretToSet )
 {
 	Turret = TurretToSet;
 }
 
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
+void UTankAimingComponent::SetBarrelReference( UTankBarrel* BarrelToSet )
 {
 	Barrel = BarrelToSet;
 }
@@ -49,5 +49,6 @@ void UTankAimingComponent::MoveBarrel( FVector AimDirection )
 {
 	FRotator AimRotation = AimDirection.Rotation();
 
+	Barrel->Elevate(5.f);
 }
 
