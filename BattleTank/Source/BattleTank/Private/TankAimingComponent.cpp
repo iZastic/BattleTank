@@ -22,7 +22,7 @@ void UTankAimingComponent::AimAt( FVector TargetLocation, float LaunchSpeed )
 		LaunchVelocity,
 		StartLocation,
 		TargetLocation,
-		1000000,
+		1000000, // TODO Turn launch speed into a variable
 		ESuggestProjVelocityTraceOption::DoNotTrace))
 	{
 		// Move barrel towards aim direction
